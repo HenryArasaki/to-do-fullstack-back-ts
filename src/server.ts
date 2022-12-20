@@ -1,4 +1,4 @@
-import * as dotenv from 'dotenv'
+import * as dotenv from "dotenv"
 
 const result = dotenv.config()
 
@@ -10,8 +10,10 @@ if(result.error){
 console.log(process.env.PORT)
 
 import * as express from 'express'
+import { logger } from "./logger"
 import { root } from './routes/root'
-import { inInteger } from './utils'
+import { isInteger } from './utils'
+import {AppDataSource} from './data-source'
 
 const app = express()
 
@@ -30,11 +32,11 @@ function startServer(){
 
     const portEnv = process.env.PORT
 
-    if (inInteger(portEnv)){
+    if (isInteger(portEnv)){
         port = parseInt(portEnv)
     }
 
-    if (!port && inInteger(portArg)){
+    if (!port && isInteger(portArg)){
         port = parseInt(portArg)
     }
 
@@ -42,10 +44,19 @@ function startServer(){
         port = 9000
     }
 
-    app.listen(port, ()=>console.log("Server is running"))
+    app.listen(port, ()=>logger.info("Server is running"))
 
 }
 
-setupExpress()
 
-startServer()
+
+AppDataSource.initialize()
+    .then(()=>{
+        logger.info('DataSource initialized successfully')
+        setupExpress()
+        startServer()
+    })
+    .catch(error=>{
+        logger.error('Error during dataSource initialization - ', error)
+        process.exit(1)
+    })
