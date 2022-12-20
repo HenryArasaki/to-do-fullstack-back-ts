@@ -14,7 +14,7 @@ export const logger = winston.createLogger({
             level:"error"
         })
     ]
-})
+}) 
 
 if(process.env.NODE_ENV != "production"){
     logger.add(new winston.transports.Console({

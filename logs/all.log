@@ -20,3 +20,149 @@
     "stack": "Error: getaddrinfo ENOTFOUND curstots_user\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26)",
     "syscall": "getaddrinfo"
 }
+{
+    "code": "ENOTFOUND",
+    "errno": -3008,
+    "hostname": "dpg-ced6r4kgqg45ht8ef0ig-a",
+    "level": "error",
+    "message": "Error during dataSource initialization -  getaddrinfo ENOTFOUND dpg-ced6r4kgqg45ht8ef0ig-a",
+    "stack": "Error: getaddrinfo ENOTFOUND dpg-ced6r4kgqg45ht8ef0ig-a\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26)",
+    "syscall": "getaddrinfo"
+}
+{
+    "code": "ENOTFOUND",
+    "errno": -3008,
+    "hostname": "dpg-ced6r4kgqg45ht8ef0ig-a",
+    "level": "error",
+    "message": "Error during dataSource initialization -  getaddrinfo ENOTFOUND dpg-ced6r4kgqg45ht8ef0ig-a",
+    "stack": "Error: getaddrinfo ENOTFOUND dpg-ced6r4kgqg45ht8ef0ig-a\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26)",
+    "syscall": "getaddrinfo"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running"
+}
