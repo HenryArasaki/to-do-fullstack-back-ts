@@ -7,13 +7,14 @@ if(result.error){
     process.exit(1)
 }
 
-console.log(process.env.PORT)
 
+import "reflect-metadata"
 import * as express from 'express'
 import { logger } from "./logger"
 import { root } from './routes/root'
 import { isInteger } from './utils'
 import {AppDataSource} from './data-source'
+import { getAllCourses } from "./routes/get-all-courses"
 
 const app = express()
 
@@ -22,6 +23,7 @@ function setupExpress(){
 
     app.route("/").get(root)
 
+    app.route("/api/courses").get(getAllCourses)
 }
 
 function startServer(){
@@ -44,7 +46,7 @@ function startServer(){
         port = 9000
     }
 
-    app.listen(port, ()=>logger.info("Server is running"))
+    app.listen(port, ()=>logger.info(`Server is running on port ${port}`))
 
 }
 

@@ -6,15 +6,17 @@ if (result.error) {
     console.log("Error loading environment variables");
     process.exit(1);
 }
-console.log(process.env.PORT);
+require("reflect-metadata");
 var express = require("express");
 var logger_1 = require("./logger");
 var root_1 = require("./routes/root");
 var utils_1 = require("./utils");
 var data_source_1 = require("./data-source");
+var get_all_courses_1 = require("./routes/get-all-courses");
 var app = express();
 function setupExpress() {
     app.route("/").get(root_1.root);
+    app.route("/api/courses").get(get_all_courses_1.getAllCourses);
 }
 function startServer() {
     var port;
@@ -29,7 +31,7 @@ function startServer() {
     if (!port) {
         port = 9000;
     }
-    app.listen(port, function () { return logger_1.logger.info("Server is running"); });
+    app.listen(port, function () { return logger_1.logger.info("Server is running on port ".concat(port)); });
 }
 data_source_1.AppDataSource.initialize()
     .then(function () {

@@ -8,7 +8,9 @@
     "build": "tsc",
     "start-server": "node dist/server.js",
     "start-dev-server": "tsc-watch --onSuccess \"node dist/server.js\"",
-    "dev": "npm-run-all clean build start-dev-server"
+    "dev": "npm-run-all clean build start-dev-server",
+    "delete-db":"npm-run-all clean build run-delete-db-script",
+    "run-delete-db-script":"node dist/models/delete-db.js"
   },
   "keywords": [],
   "author": "",
