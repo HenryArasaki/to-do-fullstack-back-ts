@@ -38,17 +38,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllCourses = void 0;
 var data_source_1 = require("../data-source");
+var logger_1 = require("../logger");
 var course_1 = require("../models/course");
-function getAllCourses(req, res) {
+function getAllCourses(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var courses;
+        var courses, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, data_source_1.AppDataSource.getRepository(course_1.Course).createQueryBuilder("courses").orderBy("courses.seqNo").getMany()];
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, data_source_1.AppDataSource.getRepository(course_1.Course).createQueryBuilder("courses").orderBy("courses.seqNo").getMany()];
                 case 1:
                     courses = _a.sent();
                     res.status(200).json({ courses: courses });
-                    return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    logger_1.logger.error("Error getAllCourses");
+                    return [2 /*return*/, next(error_1)];
+                case 3: return [2 /*return*/];
             }
         });
     });
