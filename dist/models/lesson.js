@@ -15,8 +15,6 @@ var course_1 = require("./course");
 var Lesson = /** @class */ (function () {
     function Lesson() {
     }
-    Lesson_1 = Lesson;
-    var Lesson_1;
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
@@ -34,7 +32,10 @@ var Lesson = /** @class */ (function () {
         __metadata("design:type", Number)
     ], Lesson.prototype, "seqNo", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return Lesson_1; }, function (lesson) { return lesson.course; }),
+        (0, typeorm_1.ManyToOne)(function () { return course_1.Course; }, function (course) { return course.lessons; }),
+        (0, typeorm_1.JoinColumn)({
+            name: "courseId"
+        }),
         __metadata("design:type", course_1.Course)
     ], Lesson.prototype, "course", void 0);
     __decorate([
@@ -45,7 +46,7 @@ var Lesson = /** @class */ (function () {
         (0, typeorm_1.UpdateDateColumn)(),
         __metadata("design:type", Date)
     ], Lesson.prototype, "lastUpdatedAt", void 0);
-    Lesson = Lesson_1 = __decorate([
+    Lesson = __decorate([
         (0, typeorm_1.Entity)({
             name: "LESSONS"
         })

@@ -11,11 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Course = void 0;
 var typeorm_1 = require("typeorm");
+var lesson_1 = require("./lesson");
 var Course = /** @class */ (function () {
     function Course() {
     }
-    Course_1 = Course;
-    var Course_1;
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
@@ -41,10 +40,7 @@ var Course = /** @class */ (function () {
         __metadata("design:type", String)
     ], Course.prototype, "category", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return Course_1; }, function (course) { return course.lessons; }),
-        (0, typeorm_1.JoinColumn)({
-            name: "courseId"
-        }),
+        (0, typeorm_1.OneToMany)(function () { return lesson_1.Lesson; }, function (lesson) { return lesson.course; }),
         __metadata("design:type", Array)
     ], Course.prototype, "lessons", void 0);
     __decorate([
@@ -55,7 +51,7 @@ var Course = /** @class */ (function () {
         (0, typeorm_1.UpdateDateColumn)(),
         __metadata("design:type", Date)
     ], Course.prototype, "lastUpdatedAt", void 0);
-    Course = Course_1 = __decorate([
+    Course = __decorate([
         (0, typeorm_1.Entity)({
             name: "COURSES"
         })

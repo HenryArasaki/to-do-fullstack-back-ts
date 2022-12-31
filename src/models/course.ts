@@ -1,4 +1,4 @@
-import {PrimaryGeneratedColumn,Column,Entity,CreateDateColumn,UpdateDateColumn,ManyToOne,JoinColumn} from 'typeorm'
+import {PrimaryGeneratedColumn,Column,Entity,CreateDateColumn,UpdateDateColumn,ManyToOne,JoinColumn, OneToMany} from 'typeorm'
 import { Lesson } from './lesson'
 
 
@@ -24,11 +24,8 @@ export class Course{
     @Column()
     category:string
 
-    @ManyToOne(()=>Course,course=>course.lessons)
-    @JoinColumn({
-        name:"courseId"
-    })
-    lessons:Lesson[]
+    @OneToMany(() => Lesson, lesson => lesson.course)
+    lessons: Lesson[];
 
     @CreateDateColumn()
     createdAt:Date
