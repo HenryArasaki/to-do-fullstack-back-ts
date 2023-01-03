@@ -334,3 +334,11 @@
     "level": "info",
     "message": "Server is running on port 9000"
 }
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
