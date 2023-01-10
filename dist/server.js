@@ -14,12 +14,15 @@ var utils_1 = require("./utils");
 var data_source_1 = require("./data-source");
 var get_all_courses_1 = require("./routes/get-all-courses");
 var default_error_handler_1 = require("./middlewares/default-error-handler");
+var find_crouse_by_url_1 = require("./routes/find-crouse-by-url");
 var cors = require("cors");
 var app = express();
 function setupExpress() {
     app.use(cors({ origin: true }));
     app.route("/").get(root_1.root);
     app.route("/api/courses").get(get_all_courses_1.getAllCourses);
+    app.route("/api/courses/:courseUrl").get(find_crouse_by_url_1.findCourseByUrl);
+    app.route("/api/courses/:courseId/lessons");
     app.use(default_error_handler_1.defaultErrorHandler);
 }
 function startServer() {
