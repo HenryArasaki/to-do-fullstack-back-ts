@@ -36,43 +36,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findLessonsForCourse = void 0;
+exports.deleteCourseAndLessons = void 0;
 var data_source_1 = require("../data-source");
+var logger_1 = require("../logger");
 var lesson_1 = require("../models/lesson");
 var utils_1 = require("../utils");
-function findLessonsForCourse(req, res, next) {
-    var _a, _b;
+function deleteCourseAndLessons(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var courseId, query, pageNumber, pageSize, lessons, error_1;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _c.trys.push([0, 2, , 3]);
-                    courseId = req.params.courseId;
-                    query = req.query;
-                    pageNumber = (_a = query === null || query === void 0 ? void 0 : query.pageNumber) !== null && _a !== void 0 ? _a : "0";
-                    pageSize = (_b = query === null || query === void 0 ? void 0 : query.pageSize) !== null && _b !== void 0 ? _b : "3";
-                    if (!(0, utils_1.isInteger)(courseId)) {
-                        throw "invalid course id ".concat(courseId);
-                    }
-                    if (!(0, utils_1.isInteger)(pageNumber)) {
-                        throw "invalid course id ".concat(pageNumber);
-                    }
-                    if (!(0, utils_1.isInteger)(pageSize)) {
-                        throw "invalid course id ".concat(pageSize);
-                    }
-                    return [4 /*yield*/, data_source_1.AppDataSource.getRepository(lesson_1.Lesson).createQueryBuilder("lessons").where("lessons.courseId = :courseId", { courseId: courseId }).orderBy("lessons.seqNo").skip(pageNumber * pageSize).take(pageSize).getMany()];
-                case 1:
-                    lessons = _c.sent();
-                    console.log(lessons);
-                    res.status(200).json({ lessons: lessons });
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _c.sent();
-                    return [2 /*return*/, next(error_1)];
-                case 3: return [2 /*return*/];
+        var courseId_1;
+        var _this = this;
+        return __generator(this, function (_a) {
+            try {
+                courseId_1 = req.params.courseId;
+                if (!(0, utils_1.isInteger)(courseId_1)) {
+                    throw "invalid course id ".concat(courseId_1);
+                }
+                data_source_1.AppDataSource.manager.transaction(function (transactionEntityManager) { return __awaiter(_this, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        transactionEntityManager.createQueryBuilder().delete().from(lesson_1.Lesson).where("courseId = :courseId", { courseId: courseId_1 }).execute();
+                        return [2 /*return*/];
+                    });
+                }); });
             }
+            catch (error) {
+                logger_1.logger.error("Error calliing deleteCourseAndLessons");
+                return [2 /*return*/, next(error)];
+            }
+            return [2 /*return*/];
         });
     });
 }
-exports.findLessonsForCourse = findLessonsForCourse;
+exports.deleteCourseAndLessons = deleteCourseAndLessons;

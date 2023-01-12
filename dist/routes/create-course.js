@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,43 +47,51 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findLessonsForCourse = void 0;
+exports.createCourse = void 0;
 var data_source_1 = require("../data-source");
-var lesson_1 = require("../models/lesson");
-var utils_1 = require("../utils");
-function findLessonsForCourse(req, res, next) {
-    var _a, _b;
+var logger_1 = require("../logger");
+var course_1 = require("../models/course");
+function createCourse(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var courseId, query, pageNumber, pageSize, lessons, error_1;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var data_1, course, error_1;
+        var _this = this;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _c.trys.push([0, 2, , 3]);
-                    courseId = req.params.courseId;
-                    query = req.query;
-                    pageNumber = (_a = query === null || query === void 0 ? void 0 : query.pageNumber) !== null && _a !== void 0 ? _a : "0";
-                    pageSize = (_b = query === null || query === void 0 ? void 0 : query.pageSize) !== null && _b !== void 0 ? _b : "3";
-                    if (!(0, utils_1.isInteger)(courseId)) {
-                        throw "invalid course id ".concat(courseId);
+                    _a.trys.push([0, 2, , 3]);
+                    data_1 = req.body;
+                    if (!data_1) {
+                        throw "No data avalible, cannot save course";
                     }
-                    if (!(0, utils_1.isInteger)(pageNumber)) {
-                        throw "invalid course id ".concat(pageNumber);
-                    }
-                    if (!(0, utils_1.isInteger)(pageSize)) {
-                        throw "invalid course id ".concat(pageSize);
-                    }
-                    return [4 /*yield*/, data_source_1.AppDataSource.getRepository(lesson_1.Lesson).createQueryBuilder("lessons").where("lessons.courseId = :courseId", { courseId: courseId }).orderBy("lessons.seqNo").skip(pageNumber * pageSize).take(pageSize).getMany()];
+                    return [4 /*yield*/, data_source_1.AppDataSource.manager.transaction("REPEATABLE READ", function (transactionalEntityManager) { return __awaiter(_this, void 0, void 0, function () {
+                            var repository, result, course;
+                            var _a;
+                            return __generator(this, function (_b) {
+                                switch (_b.label) {
+                                    case 0:
+                                        repository = transactionalEntityManager.getRepository(course_1.Course);
+                                        return [4 /*yield*/, repository.createQueryBuilder("courses").select("MAX(courses.seqNo)", "max").getRawOne()];
+                                    case 1:
+                                        result = _b.sent();
+                                        course = repository.create(__assign(__assign({}, data_1), { seqNo: ((_a = result === null || result === void 0 ? void 0 : result.max) !== null && _a !== void 0 ? _a : 0) + 1 }));
+                                        return [4 /*yield*/, repository.save(course)];
+                                    case 2:
+                                        _b.sent();
+                                        return [2 /*return*/, course];
+                                }
+                            });
+                        }); })];
                 case 1:
-                    lessons = _c.sent();
-                    console.log(lessons);
-                    res.status(200).json({ lessons: lessons });
+                    course = _a.sent();
+                    res.status(200).json({ course: course });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _c.sent();
+                    error_1 = _a.sent();
+                    logger_1.logger.error("error calling createCourse()");
                     return [2 /*return*/, next(error_1)];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-exports.findLessonsForCourse = findLessonsForCourse;
+exports.createCourse = createCourse;

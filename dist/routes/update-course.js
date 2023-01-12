@@ -36,43 +36,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findLessonsForCourse = void 0;
+exports.updateCourse = void 0;
 var data_source_1 = require("../data-source");
-var lesson_1 = require("../models/lesson");
+var logger_1 = require("../logger");
+var course_1 = require("../models/course");
 var utils_1 = require("../utils");
-function findLessonsForCourse(req, res, next) {
-    var _a, _b;
+function updateCourse(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var courseId, query, pageNumber, pageSize, lessons, error_1;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var courseId, changes, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _c.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 2, , 3]);
                     courseId = req.params.courseId;
-                    query = req.query;
-                    pageNumber = (_a = query === null || query === void 0 ? void 0 : query.pageNumber) !== null && _a !== void 0 ? _a : "0";
-                    pageSize = (_b = query === null || query === void 0 ? void 0 : query.pageSize) !== null && _b !== void 0 ? _b : "3";
+                    changes = req.body;
                     if (!(0, utils_1.isInteger)(courseId)) {
                         throw "invalid course id ".concat(courseId);
                     }
-                    if (!(0, utils_1.isInteger)(pageNumber)) {
-                        throw "invalid course id ".concat(pageNumber);
-                    }
-                    if (!(0, utils_1.isInteger)(pageSize)) {
-                        throw "invalid course id ".concat(pageSize);
-                    }
-                    return [4 /*yield*/, data_source_1.AppDataSource.getRepository(lesson_1.Lesson).createQueryBuilder("lessons").where("lessons.courseId = :courseId", { courseId: courseId }).orderBy("lessons.seqNo").skip(pageNumber * pageSize).take(pageSize).getMany()];
+                    return [4 /*yield*/, data_source_1.AppDataSource.createQueryBuilder().update(course_1.Course).set(changes).where("id = :courseId", { courseId: courseId }).execute()];
                 case 1:
-                    lessons = _c.sent();
-                    console.log(lessons);
-                    res.status(200).json({ lessons: lessons });
+                    _a.sent();
+                    res.status(200).json({
+                        message: "Course ".concat(courseId, " was updated successfully")
+                    });
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _c.sent();
+                    error_1 = _a.sent();
+                    logger_1.logger.error("error calling updateCourse()");
                     return [2 /*return*/, next(error_1)];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-exports.findLessonsForCourse = findLessonsForCourse;
+exports.updateCourse = updateCourse;

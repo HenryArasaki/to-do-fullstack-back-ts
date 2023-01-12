@@ -34,3 +34,19 @@
     "stack": "Error: getaddrinfo ENOTFOUND dpg-ced6r4kgqg45ht8ef0ig-a\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26)",
     "syscall": "getaddrinfo"
 }
+{
+    "level": "error",
+    "message": "error calling updateCourse()"
+}
+{
+    "level": "error",
+    "message": "default error handler; reason: "
+}
+{
+    "level": "error",
+    "message": "error calling updateCourse()"
+}
+{
+    "level": "error",
+    "message": "default error handler; reason: "
+}
