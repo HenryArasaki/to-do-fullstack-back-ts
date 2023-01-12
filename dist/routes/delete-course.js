@@ -39,6 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteCourseAndLessons = void 0;
 var data_source_1 = require("../data-source");
 var logger_1 = require("../logger");
+var course_1 = require("../models/course");
 var lesson_1 = require("../models/lesson");
 var utils_1 = require("../utils");
 function deleteCourseAndLessons(req, res, next) {
@@ -51,12 +52,21 @@ function deleteCourseAndLessons(req, res, next) {
                 if (!(0, utils_1.isInteger)(courseId_1)) {
                     throw "invalid course id ".concat(courseId_1);
                 }
-                data_source_1.AppDataSource.manager.transaction(function (transactionEntityManager) { return __awaiter(_this, void 0, void 0, function () {
+                data_source_1.AppDataSource.manager.transaction(function (transactionalEntityManager) { return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_a) {
-                        transactionEntityManager.createQueryBuilder().delete().from(lesson_1.Lesson).where("courseId = :courseId", { courseId: courseId_1 }).execute();
-                        return [2 /*return*/];
+                        switch (_a.label) {
+                            case 0:
+                                transactionalEntityManager.createQueryBuilder().delete().from(lesson_1.Lesson).where("courseId = :courseId", { courseId: courseId_1 }).execute();
+                                return [4 /*yield*/, transactionalEntityManager.createQueryBuilder().delete().from(course_1.Course).where("id = :courseId", { courseId: courseId_1 }).execute()];
+                            case 1:
+                                _a.sent();
+                                return [2 /*return*/];
+                        }
                     });
                 }); });
+                res.status(200).json({
+                    message: "Course deleted successfully ".concat(courseId_1)
+                });
             }
             catch (error) {
                 logger_1.logger.error("Error calliing deleteCourseAndLessons");
