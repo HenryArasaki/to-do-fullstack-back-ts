@@ -36,26 +36,54 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.calculatePasswordHash = exports.isInteger = void 0;
+exports.createUser = void 0;
+var data_source_1 = require("../data-source");
+var logger_1 = require("../logger");
+var user_1 = require("../models/user");
+var utils_1 = require("../utils");
 var crypto = require("crypto");
-var util = require("util");
-var hashPassword = util.promisify(crypto.pbkdf2);
-function isInteger(input) {
-    var _a;
-    return (_a = input === null || input === void 0 ? void 0 : input.match(/^\d+$/)) !== null && _a !== void 0 ? _a : false;
-}
-exports.isInteger = isInteger;
-function calculatePasswordHash(plainTextPassword, passwordSalt) {
+function createUser(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var passwordHash;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, hashPassword(plainTextPassword, passwordSalt, 1000, 64, "sha512")];
+        var _a, email, pictureUrl, password, isAdmin, repository, user, message, passwordSalt, passwordHash, newUser, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 4, , 5]);
+                    _a = req.body, email = _a.email, pictureUrl = _a.pictureUrl, password = _a.password, isAdmin = _a.isAdmin;
+                    if (!email) {
+                        throw "Could not extract the email from the request";
+                    }
+                    if (!password) {
+                        throw "Could not extract the password from the request";
+                    }
+                    repository = data_source_1.AppDataSource.getRepository(user_1.User);
+                    return [4 /*yield*/, repository.createQueryBuilder("user").where("email=:email", { email: email }).getOne()];
                 case 1:
-                    passwordHash = _a.sent();
-                    return [2 /*return*/, passwordHash.toString("hex")];
+                    user = _b.sent();
+                    if (user) {
+                        message = "User with email ".concat(email, " already exists");
+                        logger_1.logger.error(message);
+                        res.status(500).json({ message: message });
+                        return [2 /*return*/];
+                    }
+                    passwordSalt = crypto.randomBytes(64).toString('hex');
+                    return [4 /*yield*/, (0, utils_1.calculatePasswordHash)(password, passwordSalt)];
+                case 2:
+                    passwordHash = _b.sent();
+                    newUser = repository.create({ email: email, pictureUrl: pictureUrl, isAdmin: isAdmin, passwordHash: passwordHash, passwordSalt: passwordSalt });
+                    return [4 /*yield*/, data_source_1.AppDataSource.manager.save(newUser)];
+                case 3:
+                    _b.sent();
+                    logger_1.logger.info("User ".concat(email, " has been created"));
+                    res.status(200).json({ email: email, pictureUrl: pictureUrl, isAdmin: isAdmin });
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_1 = _b.sent();
+                    logger_1.logger.error("error calling createCourse()");
+                    return [2 /*return*/, next(error_1)];
+                case 5: return [2 /*return*/];
             }
         });
     });
 }
-exports.calculatePasswordHash = calculatePasswordHash;
+exports.createUser = createUser;

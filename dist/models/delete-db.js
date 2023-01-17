@@ -42,6 +42,7 @@ require("reflect-metadata");
 var data_source_1 = require("../data-source");
 var course_1 = require("./course");
 var lesson_1 = require("./lesson");
+var user_1 = require("./user");
 function deleteDb() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -54,6 +55,9 @@ function deleteDb() {
                     _a.sent();
                     return [4 /*yield*/, data_source_1.AppDataSource.getRepository(course_1.Course).delete({})];
                 case 3:
+                    _a.sent();
+                    return [4 /*yield*/, data_source_1.AppDataSource.getRepository(user_1.User).delete({})];
+                case 4:
                     _a.sent();
                     return [2 /*return*/];
             }

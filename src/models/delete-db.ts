@@ -7,6 +7,7 @@ import "reflect-metadata"
 import { AppDataSource } from "../data-source"
 import { Course } from "./course"
 import { Lesson } from "./lesson"
+import { User } from "./user"
 
 async function deleteDb(){
 
@@ -14,6 +15,8 @@ async function deleteDb(){
 
     await AppDataSource.getRepository(Lesson).delete({})
     await AppDataSource.getRepository(Course).delete({})
+    await AppDataSource.getRepository(User).delete({})
+
 }
 
 deleteDb()
