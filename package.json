@@ -1,5 +1,5 @@
 {
-  "name": "curso-ts",
+  "name": "molde_back",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -32,7 +32,6 @@
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.11",
-    "winston": "^3.8.2"
+    "typeorm": "^0.3.11"
   }
 }

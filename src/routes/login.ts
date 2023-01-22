@@ -1,6 +1,5 @@
 import {NextFunction, Request,Response} from 'express'
 import { AppDataSource } from '../data-source'
-import { logger } from '../logger'
 import { User } from '../models/user'
 import { calculatePasswordHash } from '../utils'
 
@@ -60,7 +59,6 @@ export async function login(req:Request,res:Response, next:NextFunction){
 
     }
     catch(error){
-        logger.error("Error getAllCourses")
         return next(error)
     }
 }

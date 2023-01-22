@@ -1,6 +1,5 @@
 import { NextFunction,Request,Response } from "express";
 import { AppDataSource } from "../data-source";
-import { logger } from "../logger";
 import { Course } from "../models/course";
 import { Lesson } from "../models/lesson";
 import { isInteger } from "../utils";
@@ -27,7 +26,6 @@ export async function deleteCourseAndLessons(req:Request, res:Response, next:Nex
 
     }
     catch(error){
-        logger.error("Error calliing deleteCourseAndLessons")
         return next(error)
     }
 

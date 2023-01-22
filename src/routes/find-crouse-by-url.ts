@@ -1,6 +1,5 @@
 import { NextFunction,Request,Response } from "express";
 import { AppDataSource } from "../data-source";
-import { logger } from "../logger";
 import { Course } from "../models/course";
 import { Lesson } from "../models/lesson";
 
@@ -32,7 +31,6 @@ export async function findCourseByUrl(req:Request, res:Response, next:NextFuncti
         })
 
     }catch(error){
-        logger.error("Error find course by url")
         return next(error)
     }
 

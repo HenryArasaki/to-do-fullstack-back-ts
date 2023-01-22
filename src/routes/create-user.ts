@@ -1,6 +1,5 @@
 import { NextFunction,Request,Response } from "express";
 import { AppDataSource } from "../data-source";
-import { logger } from "../logger";
 import { User } from "../models/user";
 import { calculatePasswordHash } from "../utils";
 
@@ -26,7 +25,6 @@ export async function createUser(req:Request, res:Response, next:NextFunction){
 
         if(user){
             const message = `User with email ${email} already exists`
-            logger.error(message)
             res.status(500).json({message})
             return
         }
@@ -39,14 +37,12 @@ export async function createUser(req:Request, res:Response, next:NextFunction){
 
         await AppDataSource.manager.save(newUser)
 
-        logger.info(`User ${email} has been created`)
 
         res.status(200).json({email,pictureUrl,isAdmin})
 
 
     }
     catch(error){
-        logger.error("error calling createCourse()")
         return next(error)
     }
 

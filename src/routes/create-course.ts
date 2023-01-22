@@ -1,7 +1,6 @@
 
 import { NextFunction,Request,Response } from "express";
 import { AppDataSource } from "../data-source";
-import { logger } from "../logger";
 import { Course } from "../models/course";
 
 
@@ -34,7 +33,6 @@ export async function createCourse(req:Request, res:Response, next:NextFunction)
 
     }
     catch(error){
-        logger.error("error calling createCourse()")
         return next(error)
     }
 }

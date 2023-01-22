@@ -10,7 +10,6 @@ if(result.error){
 
 import "reflect-metadata"
 import * as express from 'express'
-import { logger } from "./logger"
 import { root } from './routes/root'
 import { isInteger } from './utils'
 import {AppDataSource} from './data-source'
@@ -79,7 +78,7 @@ function startServer(){
         port = 9000
     }
 
-    app.listen(port, ()=>logger.info(`Server is running on port ${port}`))
+    app.listen(port, ()=>console.log(`Server is running on port ${port}`))
 
 }
 
@@ -87,11 +86,9 @@ function startServer(){
 
 AppDataSource.initialize()
     .then(()=>{
-        logger.info('DataSource initialized successfully')
         setupExpress()
         startServer()
     })
     .catch(error=>{
-        logger.error('Error during dataSource initialization - ', error)
         process.exit(1)
     })

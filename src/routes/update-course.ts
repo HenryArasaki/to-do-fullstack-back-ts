@@ -1,6 +1,5 @@
 import { Request,Response,NextFunction } from "express";
 import { AppDataSource } from "../data-source";
-import { logger } from "../logger";
 import { Course } from "../models/course";
 import { isInteger } from "../utils";
 
@@ -24,7 +23,6 @@ export async function updateCourse(req:Request, res:Response,next:NextFunction){
         })
     }
     catch(error){
-        logger.error("error calling updateCourse()")
         return next(error)
     }
 }
