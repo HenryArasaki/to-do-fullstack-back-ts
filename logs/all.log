@@ -1120,3 +1120,35 @@
     "level": "info",
     "message": "Authentication JWT successfully decoded"
 }
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "email": "admin@admin.com",
+    "iat": 1674400083,
+    "isAdmin": true,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 2
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "info",
+    "message": "User aadmin@admin.com has been created"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
