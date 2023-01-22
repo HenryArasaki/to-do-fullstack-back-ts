@@ -23,6 +23,7 @@ var delete_course_1 = require("./routes/delete-course");
 var create_user_1 = require("./routes/create-user");
 var login_1 = require("./routes/login");
 var authentication_middleware_1 = require("./middlewares/authentication-middleware");
+var admin_only_middleware_1 = require("./middlewares/admin-only.middleware");
 var cors = require("cors");
 var app = express();
 function setupExpress() {
@@ -35,7 +36,7 @@ function setupExpress() {
     app.route("/api/courses/:courseId").patch(authentication_middleware_1.checkIfAuthenticated, update_course_1.updateCourse);
     app.route("/api/courses/").post(authentication_middleware_1.checkIfAuthenticated, create_course_1.createCourse);
     app.route("/api/courses/:courseId").delete(authentication_middleware_1.checkIfAuthenticated, delete_course_1.deleteCourseAndLessons);
-    app.route("/api/users").post(authentication_middleware_1.checkIfAuthenticated, create_user_1.createUser);
+    app.route("/api/users").post(authentication_middleware_1.checkIfAuthenticated, admin_only_middleware_1.checkIfAdmin, create_user_1.createUser);
     app.route("/api/login").post(login_1.login);
     app.use(default_error_handler_1.defaultErrorHandler);
 }

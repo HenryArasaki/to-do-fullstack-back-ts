@@ -870,3 +870,253 @@
     "level": "info",
     "message": "Authentication JWT successfully decoded"
 }
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "The authentication JWT is not present, access denied"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674398284,
+    "isAdmin": false,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674398284,
+    "isAdmin": false,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674398284,
+    "isAdmin": false,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "level": "error",
+    "message": "Could not validade the authentication JWT jwt malformed",
+    "name": "JsonWebTokenError",
+    "stack": "JsonWebTokenError: jwt malformed\n    at Object.module.exports [as verify] (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\node_modules\\jsonwebtoken\\verify.js:70:17)\n    at C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:67:50\n    at step (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:33:23)\n    at Object.next (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:14:53)\n    at C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:8:71\n    at new Promise (<anonymous>)\n    at __awaiter (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:4:12)\n    at checkJwtValidity (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:63:12)\n    at checkIfAuthenticated (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:50:5)\n    at Layer.handle [as handle_request] (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\node_modules\\express\\lib\\router\\layer.js:95:5)"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674399985,
+    "isAdmin": true,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674399985,
+    "isAdmin": true,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674400009,
+    "isAdmin": true,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674400009,
+    "isAdmin": true,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "info",
+    "message": "User admin@admin.com has been created"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "email": "admin@admin.com",
+    "iat": 1674400083,
+    "isAdmin": true,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 2
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "email": "admin@admin.com",
+    "iat": 1674400083,
+    "isAdmin": true,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 2
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "email": "admin@admin.com",
+    "iat": 1674400083,
+    "isAdmin": true,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 2
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "email": "admin@admin.com",
+    "iat": 1674400083,
+    "isAdmin": true,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 2
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}

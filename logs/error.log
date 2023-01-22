@@ -50,3 +50,41 @@
     "level": "error",
     "message": "default error handler; reason: "
 }
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "level": "error",
+    "message": "Could not validade the authentication JWT jwt malformed",
+    "name": "JsonWebTokenError",
+    "stack": "JsonWebTokenError: jwt malformed\n    at Object.module.exports [as verify] (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\node_modules\\jsonwebtoken\\verify.js:70:17)\n    at C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:67:50\n    at step (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:33:23)\n    at Object.next (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:14:53)\n    at C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:8:71\n    at new Promise (<anonymous>)\n    at __awaiter (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:4:12)\n    at checkJwtValidity (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:63:12)\n    at checkIfAuthenticated (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\dist\\middlewares\\authentication-middleware.js:50:5)\n    at Layer.handle [as handle_request] (C:\\Users\\Tomato\\Documents\\programacao\\curso ts\\node_modules\\express\\lib\\router\\layer.js:95:5)"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
+{
+    "level": "error",
+    "message": "The user is not an admin, access denied"
+}
