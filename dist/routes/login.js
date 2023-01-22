@@ -36,46 +36,68 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findCourseByUrl = void 0;
+exports.login = void 0;
 var data_source_1 = require("../data-source");
 var logger_1 = require("../logger");
-var course_1 = require("../models/course");
-var lesson_1 = require("../models/lesson");
-function findCourseByUrl(req, res, next) {
+var user_1 = require("../models/user");
+var utils_1 = require("../utils");
+var jwt = require("jsonwebtoken");
+var JWT_SECRET = process.env.JWT_SECRET;
+function login(req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
-        var courseUrl, course, message, totalLessons, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, email, password, user, message, passwordHash, message, pictureUrl, isAdmin, authJwt, authJwtToken, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    courseUrl = req.params.courseUrl;
-                    if (!courseUrl) {
-                        throw 'Could not extract the course url from the request';
+                    _b.trys.push([0, 4, , 5]);
+                    _a = req.body, email = _a.email, password = _a.password;
+                    if (!email) {
+                        throw "Could not extract the email from the request";
                     }
-                    return [4 /*yield*/, data_source_1.AppDataSource.getRepository(course_1.Course).findOneBy({ url: courseUrl })];
+                    if (!password) {
+                        throw "Could not extract the password from the request";
+                    }
+                    return [4 /*yield*/, data_source_1.AppDataSource.getRepository(user_1.User).createQueryBuilder("users").where("email = :email", { email: email }).getOne()];
                 case 1:
-                    course = _a.sent();
-                    if (!course) {
-                        message = "Could not find a course with url ".concat(courseUrl);
-                        console.log(message);
-                        res.status(404).json({ message: message });
+                    user = _b.sent();
+                    if (!user) {
+                        message = "Login denied";
+                        res.status(403).json({ message: message });
                         return [2 /*return*/];
                     }
-                    return [4 /*yield*/, data_source_1.AppDataSource.getRepository(lesson_1.Lesson).createQueryBuilder("lessons").where("lessons.courseId = :courseId", { courseId: course.id }).getCount()];
+                    return [4 /*yield*/, (0, utils_1.calculatePasswordHash)(password, user.passwordSalt)];
                 case 2:
-                    totalLessons = _a.sent();
-                    res.status(200).json({
-                        course: course,
-                        totalLessons: totalLessons,
-                    });
-                    return [3 /*break*/, 4];
+                    passwordHash = _b.sent();
+                    if (passwordHash != user.passwordHash) {
+                        message = "Login denied";
+                        res.status(403).json({ message: message });
+                        return [2 /*return*/];
+                    }
+                    pictureUrl = user.pictureUrl, isAdmin = user.isAdmin;
+                    authJwt = {
+                        userId: user.id,
+                        email: email,
+                        isAdmin: isAdmin
+                    };
+                    return [4 /*yield*/, jwt.sign(authJwt, JWT_SECRET)];
                 case 3:
-                    error_1 = _a.sent();
-                    logger_1.logger.error("Error find course by url");
+                    authJwtToken = _b.sent();
+                    res.status(200).json({
+                        user: {
+                            email: email,
+                            pictureUrl: pictureUrl,
+                            isAdmin: isAdmin
+                        },
+                        authJwtToken: authJwtToken
+                    });
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_1 = _b.sent();
+                    logger_1.logger.error("Error getAllCourses");
                     return [2 /*return*/, next(error_1)];
-                case 4: return [2 /*return*/];
+                case 5: return [2 /*return*/];
             }
         });
     });
 }
-exports.findCourseByUrl = findCourseByUrl;
+exports.login = login;

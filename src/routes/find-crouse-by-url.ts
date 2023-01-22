@@ -25,9 +25,10 @@ export async function findCourseByUrl(req:Request, res:Response, next:NextFuncti
 
         const totalLessons = await AppDataSource.getRepository(Lesson).createQueryBuilder("lessons").where("lessons.courseId = :courseId",{courseId:course.id}).getCount()
 
+
         res.status(200).json({
             course,
-            totalLessons
+            totalLessons,
         })
 
     }catch(error){

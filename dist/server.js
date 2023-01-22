@@ -21,19 +21,22 @@ var bodyParser = require("body-parser");
 var create_course_1 = require("./routes/create-course");
 var delete_course_1 = require("./routes/delete-course");
 var create_user_1 = require("./routes/create-user");
+var login_1 = require("./routes/login");
+var authentication_middleware_1 = require("./middlewares/authentication-middleware");
 var cors = require("cors");
 var app = express();
 function setupExpress() {
     app.use(cors({ origin: true }));
     app.use(bodyParser.json());
     app.route("/").get(root_1.root);
-    app.route("/api/courses").get(get_all_courses_1.getAllCourses);
-    app.route("/api/courses/:courseUrl").get(find_crouse_by_url_1.findCourseByUrl);
-    app.route("/api/courses/:courseId/lessons").get(find_lessons_for_course_1.findLessonsForCourse);
-    app.route("/api/courses/:courseId").patch(update_course_1.updateCourse);
-    app.route("/api/courses/").post(create_course_1.createCourse);
-    app.route("/api/courses/:courseId").delete(delete_course_1.deleteCourseAndLessons);
-    app.route("/api/users/").post(create_user_1.createUser);
+    app.route("/api/courses").get(authentication_middleware_1.checkIfAuthenticated, get_all_courses_1.getAllCourses);
+    app.route("/api/courses/:courseUrl").get(authentication_middleware_1.checkIfAuthenticated, find_crouse_by_url_1.findCourseByUrl);
+    app.route("/api/courses/:courseId/lessons").get(authentication_middleware_1.checkIfAuthenticated, find_lessons_for_course_1.findLessonsForCourse);
+    app.route("/api/courses/:courseId").patch(authentication_middleware_1.checkIfAuthenticated, update_course_1.updateCourse);
+    app.route("/api/courses/").post(authentication_middleware_1.checkIfAuthenticated, create_course_1.createCourse);
+    app.route("/api/courses/:courseId").delete(authentication_middleware_1.checkIfAuthenticated, delete_course_1.deleteCourseAndLessons);
+    app.route("/api/users").post(authentication_middleware_1.checkIfAuthenticated, create_user_1.createUser);
+    app.route("/api/login").post(login_1.login);
     app.use(default_error_handler_1.defaultErrorHandler);
 }
 function startServer() {

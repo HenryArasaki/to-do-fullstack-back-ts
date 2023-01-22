@@ -36,46 +36,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findCourseByUrl = void 0;
-var data_source_1 = require("../data-source");
+exports.checkIfAuthenticated = void 0;
 var logger_1 = require("../logger");
-var course_1 = require("../models/course");
-var lesson_1 = require("../models/lesson");
-function findCourseByUrl(req, res, next) {
+var JWT_SECRET = process.env.JWT_SECRET;
+var jwt = require("jsonwebtoken");
+function checkIfAuthenticated(req, res, next) {
+    var authJwtToken = req.headers.authorization;
+    if (!authJwtToken) {
+        logger_1.logger.info("The authentication JWT is not present, access denied");
+        res.sendStatus(403);
+        return;
+    }
+    checkJwtValidity(authJwtToken)
+        .then(function (user) {
+        logger_1.logger.info("Authentication JWT successfully decoded");
+        req["user"] = user;
+        next();
+    })
+        .catch(function (err) {
+        logger_1.logger.error("Could not validade the authentication JWT", err);
+        res.sendStatus(403);
+    });
+}
+exports.checkIfAuthenticated = checkIfAuthenticated;
+function checkJwtValidity(authJwtToken) {
     return __awaiter(this, void 0, void 0, function () {
-        var courseUrl, course, message, totalLessons, error_1;
+        var user;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    courseUrl = req.params.courseUrl;
-                    if (!courseUrl) {
-                        throw 'Could not extract the course url from the request';
-                    }
-                    return [4 /*yield*/, data_source_1.AppDataSource.getRepository(course_1.Course).findOneBy({ url: courseUrl })];
+                case 0: return [4 /*yield*/, jwt.verify(authJwtToken, JWT_SECRET)];
                 case 1:
-                    course = _a.sent();
-                    if (!course) {
-                        message = "Could not find a course with url ".concat(courseUrl);
-                        console.log(message);
-                        res.status(404).json({ message: message });
-                        return [2 /*return*/];
-                    }
-                    return [4 /*yield*/, data_source_1.AppDataSource.getRepository(lesson_1.Lesson).createQueryBuilder("lessons").where("lessons.courseId = :courseId", { courseId: course.id }).getCount()];
-                case 2:
-                    totalLessons = _a.sent();
-                    res.status(200).json({
-                        course: course,
-                        totalLessons: totalLessons,
-                    });
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_1 = _a.sent();
-                    logger_1.logger.error("Error find course by url");
-                    return [2 /*return*/, next(error_1)];
-                case 4: return [2 /*return*/];
+                    user = _a.sent();
+                    logger_1.logger.info("Found user details in JWT:", user);
+                    return [2 /*return*/, user];
             }
         });
     });
 }
-exports.findCourseByUrl = findCourseByUrl;

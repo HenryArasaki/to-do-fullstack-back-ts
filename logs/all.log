@@ -710,3 +710,163 @@
     "level": "info",
     "message": "Server is running on port 9000"
 }
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "User teste@teste.com has been created"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "level": "info",
+    "message": "The authentication JWT is not present, access denied"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674398284,
+    "isAdmin": false,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674398284,
+    "isAdmin": false,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674398284,
+    "isAdmin": false,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
+{
+    "level": "info",
+    "message": "DataSource initialized successfully"
+}
+{
+    "level": "info",
+    "message": "Server is running on port 9000"
+}
+{
+    "email": "teste@teste.com",
+    "iat": 1674398284,
+    "isAdmin": false,
+    "level": "info",
+    "message": "Found user details in JWT:",
+    "userId": 1
+}
+{
+    "level": "info",
+    "message": "Authentication JWT successfully decoded"
+}
