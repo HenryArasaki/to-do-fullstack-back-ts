@@ -1,6 +1,6 @@
 import { Request,Response,NextFunction, response } from "express";
 import { AppDataSource } from "../data-source";
-import { Lesson } from "../models/lesson";
+import { Lesson } from "../entities/lesson";
 import { isInteger } from "../utils";
 
 

@@ -1,6 +1,6 @@
 import { NextFunction,Request,Response } from "express";
 import { AppDataSource } from "../data-source";
-import { User } from "../models/user";
+import { User } from "../entities/user";
 import { calculatePasswordHash } from "../utils";
 
 const crypto = require("crypto")

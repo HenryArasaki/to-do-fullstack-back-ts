@@ -1,7 +1,7 @@
 
 import { NextFunction,Request,Response } from "express";
 import { AppDataSource } from "../data-source";
-import { Course } from "../models/course";
+import { Course } from "../entities/course";
 
 
 export async function createCourse(req:Request, res:Response, next:NextFunction){

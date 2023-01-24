@@ -1,7 +1,7 @@
 import { NextFunction,Request,Response } from "express";
 import { AppDataSource } from "../data-source";
-import { Course } from "../models/course";
-import { Lesson } from "../models/lesson";
+import { Course } from "../entities/course";
+import { Lesson } from "../entities/lesson";
 import { isInteger } from "../utils";
 
 
