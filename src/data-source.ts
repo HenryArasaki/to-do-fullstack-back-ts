@@ -1,7 +1,6 @@
 import { DataSource } from "typeorm";
-import { Course } from "./models/course";
-import { Lesson } from "./models/lesson";
-import { User } from "./models/user";
+import { User } from "./entities/user";
+import { Task } from "./entities/task";
 
 export const AppDataSource = new DataSource({
     type:"postgres",
@@ -12,9 +11,7 @@ export const AppDataSource = new DataSource({
     database:process.env.DB_NAME,
     ssl:true,
     entities:[
-        Course,
-        Lesson,
-        User
+       User,Task
     ],
     synchronize:true,
     logging:true

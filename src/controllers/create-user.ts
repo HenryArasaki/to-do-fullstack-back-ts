@@ -9,7 +9,7 @@ export async function createUser(req:Request, res:Response, next:NextFunction){
 
     try{
 
-        const {email, pictureUrl,password,isAdmin} = req.body
+        const {email,password} = req.body
 
         if(!email){
             throw "Could not extract the email from the request"
@@ -33,12 +33,12 @@ export async function createUser(req:Request, res:Response, next:NextFunction){
 
         const passwordHash = await calculatePasswordHash(password,passwordSalt)
 
-        const newUser = repository.create({email,pictureUrl,isAdmin,passwordHash,passwordSalt})
+        const newUser = repository.create({email,passwordHash,passwordSalt})
 
         await AppDataSource.manager.save(newUser)
 
 
-        res.status(200).json({email,pictureUrl,isAdmin})
+        res.status(200).json({email})
 
 
     }

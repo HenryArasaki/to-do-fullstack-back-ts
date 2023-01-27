@@ -10,10 +10,12 @@ if(result.error){
 
 import "reflect-metadata"
 import * as express from 'express'
-import { root } from './routes/root'
 import { isInteger } from './utils'
 import {AppDataSource} from './data-source'
-import {routes} from './routes.tsx'
+import {routes} from './routes'
+// const routes = require("./routes")
+import bodyParser = require("body-parser")
+import { defaultErrorHandler } from "./middlewares/default-error-handler"
 
 
 const cors = require("cors")
@@ -52,9 +54,11 @@ function startServer(){
         port = 9000
     }
 
+
     app.listen(port, ()=>console.log(`Server is running on port ${port}`))
 
 }
+
 
 
 
@@ -64,5 +68,6 @@ AppDataSource.initialize()
         startServer()
     })
     .catch(error=>{
+        console.log("erro inicializando datasource")
         process.exit(1)
     })

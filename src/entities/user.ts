@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn,OneToMany } from "typeorm";
+import { Task } from "./task";
 
 
 @Entity({
@@ -18,11 +19,8 @@ export class User{
     @Column()
     passwordSalt:string
 
-    @Column()
-    pictureUrl:string
-
-    @Column()
-    isAdmin:boolean
+    @OneToMany(() => Task, task => task.user)
+    tasks: Task[];
 
     @CreateDateColumn()
     createdAt:Date

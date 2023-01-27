@@ -37,21 +37,17 @@ export async function login(req:Request,res:Response, next:NextFunction){
             return
         }
 
-        const {pictureUrl, isAdmin} = user
 
         const authJwt = {
             userId:user.id,
-            email,
-            isAdmin
+            email
         }
 
         const authJwtToken = await jwt.sign(authJwt,JWT_SECRET)
 
         res.status(200).json({
             user:{
-                email,
-                pictureUrl,
-                isAdmin
+                email
             },
             authJwtToken
         })
