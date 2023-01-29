@@ -1,6 +1,6 @@
 import {Router} from 'express'
 
-import { getAllTasks } from "./controllers/get-all-courses"
+import { getAllTasks } from "./controllers/get-all-tasks"
 import { updateCourse } from "./controllers/update-task"
 import { createTask } from "./controllers/create-task"
 import {deleteTask } from "./controllers/delete-task"
@@ -12,7 +12,6 @@ export const routes = Router()
 
 
 routes.get("/api/tasks",checkIfAuthenticated,getAllTasks)
-
 
 routes.patch("/api/tasks/:courseId",checkIfAuthenticated,updateCourse)
 
