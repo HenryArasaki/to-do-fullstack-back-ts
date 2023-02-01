@@ -13,7 +13,6 @@ export function checkIfAuthenticated(req:Request,res:Response,next:NextFunction)
     checkJwtValidity(authJwtToken)
     .then(user=>{
 
-
         req["user"] = user
 
         next()

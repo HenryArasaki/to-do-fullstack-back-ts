@@ -11,6 +11,7 @@ export async function createTask(req:Request, res:Response, next:NextFunction){
     try{
 
         const data = req.body
+        const userId = req["user"].userId
 
         if(!data){
             throw "No data avalible, cannot save task"
@@ -23,7 +24,7 @@ export async function createTask(req:Request, res:Response, next:NextFunction){
 
         task.title = data.title
         task.done = false
-        task.user = data.user
+        task.user = userId
 
         await repository.save(task)
 
