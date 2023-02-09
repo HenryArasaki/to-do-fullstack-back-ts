@@ -8,14 +8,15 @@ export async function deleteTask(req:Request, res:Response, next:NextFunction){
 
     try{
         const taskId = req.params.taskId
+        console.log(taskId)
 
         if(!isInteger(taskId)){
             throw `invalid task id ${taskId}`
         }
 
-        AppDataSource.manager.transaction(async(transactionalEntityManager)=>{
-            transactionalEntityManager.createQueryBuilder().delete().from(Task).where("taskId = :taskId",{taskId}).execute()
-        })
+ 
+            AppDataSource.createQueryBuilder().delete().from(Task).where("id = :taskId",{taskId}).execute()
+ 
 
         res.status(200).json({
             message:`Course deleted successfully ${taskId}`

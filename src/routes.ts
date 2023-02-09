@@ -17,7 +17,7 @@ routes.patch("/api/tasks/:courseId",checkIfAuthenticated,updateCourse)
 
 routes.post("/api/tasks/",checkIfAuthenticated,createTask)
 
-routes.delete("/api/tasks/:courseId",checkIfAuthenticated,deleteTask)
+routes.delete("/api/tasks/:taskId",checkIfAuthenticated,deleteTask)
 
 // routes.post("/api/users",checkIfAuthenticated,checkIfAdmin,createUser)
 routes.post("/api/users",createUser)

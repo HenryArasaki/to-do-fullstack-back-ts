@@ -15,7 +15,7 @@ export function checkIfAuthenticated(req:Request,res:Response,next:NextFunction)
 
         req["user"] = user
 
-        next()
+        next() 
     })
     .catch(err=>{
         console.log(err)
